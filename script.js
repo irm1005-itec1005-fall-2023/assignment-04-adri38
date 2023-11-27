@@ -5,6 +5,54 @@
  */
 
 
+let todoItems = [];
+
+//pushes text entered into todoItems array
+function addTodo(text) {
+  const todo = {
+    text,
+    checked: false,
+    id: Date.now(),
+  };
+  todoItems.push(todo);
+  console.log(todoItems);
+}
+const form = document.querySelector('.js-form')
+//submit event listner
+form.addEventListener('submit', function(event) {
+  //prevents page reload
+  event.preventDefault();
+  //select text input
+  const input = document.querySelector('.js-todo-input');
+
+}
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 // Variables
 //
