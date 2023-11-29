@@ -1,56 +1,168 @@
-/*
- * CSS File for the solution
- * Assignment 03
- * You can modify these styles but you don't have to
- */
-
-/*
- VARIABLES
-*/
-:root {
-  /* Core colours */
-  /* https://coolors.co/palette/e63946-f1faee-a8dadc-457b9d-1d3557 */
-  --colour-amaranth: #e63946;
-  --colour-peppermint: #f1faee;
-  --colour-aquaisland: #a8dadc;
-  --colour-wedgewood: #457b9d;
-  --colour-cello: #1d3557;
-
-  /* Header configuration */
-  --header-heading-colour: var(--colour-peppermint);
-
-  /* Body configuration */
-  --body-default-colour: var(--colour-cello);
-  --body-background-colour: var(--colour-peppermint);
+html {
+  box-sizing: border-box;
 }
 
-/*
-  PAGE / BODY
-*/
+*, *::before, *::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--body-default-colour);
-  background-color: var(--body-background-colour);
+  background-image: url(images/wp3640574.gif);
+  
+  background-size: 100%;
+  font-family: "ＭＳ Ｐゴシック";
+ line-height: 1.4;
+}
+img{
+  margin-top: 0%;
+  width: 200px;
 }
 
-main {
-  min-height: 100vh;
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #333;
+  height: 90vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  overflow-y: auto;
+}
 
+h2 {
+  font-size: 20px;
+}
+
+li {
+  font-family: "ＭＳ Ｐゴシック";
+  padding: 10px;
+  background-color: rgba(255,221,238,1.00);
+  border-style: ridge;
+  border-color: rgba(255,221,238,1.00);
+  border-width: 5px;
+
+
+}
+
+h1 {
+
+  font-family: "ＭＳ Ｐゴシック";
+  color: #333;
+  
+}
+
+.app-title {
+  font-family: "ＭＳ Ｐゴシック";
+  text-align: center;
+  font-size: 30px;
+  opacity: 0.8;
+
+}
+
+
+
+.todo-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.todo-item {
+  font-family: "ＭＳ Ｐゴシック";
+  margin-bottom: 10px;
+  width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-item span {
+  font-family: "ＭＳ Ｐゴシック";
+  flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+.done span {
+  text-decoration: line-through;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.tick {
+  width: 30px;
+  height: 30px;
+  border: 3px solid #333;
+  border-radius: 0;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
+.tick::before {
+  font-family: "ＭＳ Ｐゴシック";
+  content: '✓';
+  font-size: 20px;
+  display: none;
+}
 
-/****** Screen reader text utility clsas *******/
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+.done .tick::before {
+  display: inline;
+}
+
+.delete-todo {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+button:hover {
+  text-decoration: underline;
+  opacity: 50%;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 3px solid #333;
+}
+
+/* Add this below all the other styles */
+
+.empty-state {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.checklist-icon {
+  margin-bottom: 20px;
+}
+
+.empty-state__title, .empty-state__description {
+  margin-bottom: 20px;
+}
+
+/* Add this below the other styles */
+.todo-list:empty {
+  display: none;
+}
+
+.todo-list:empty + .empty-state {
+  display: flex;
 }

@@ -25,20 +25,30 @@
 </head>
 
 <body>
-<main>
-  <div class="container">
-    <h1class="app-title">todos</h1class></h1>
-    <ul class="todo-list js-todo-list"></ul>
-    <div class= "empty-state">
-      <svg class="checklist-icon"><use href="kn;jp"></use></svg>
-        <h2 class="emptystatetitle">add your first todo</h2>
-        <p class="emptystatedesc">What do you want to get done today?</p>
+  <main>
+    <div class="container">
+      <h1 class="app-title"> ❄To Do List❄</h1>
+      <ul class="todo-list js-todo-list"></ul>
+      <!-- add the empty state here -->
+      <div class="empty-state">
+        <img src="images/cinnamoroll-sanrio.gif" alt="gif of the sanrio character 'Cinnamaroll' flapping his ears and making a snowball" id="Cinnamaroll">
+        <h2 class="empty-state__title">Add to your list by hitting the enter key!</h2>
+        <p class="empty-state__description">What are we doing today?</p>
+      </div>
+      <!-- end -->
+      <form class="js-form">
+        <input autofocus type="text" aria-label="Enter a new todo item" placeholder="E.g. Walk the dog" class="js-todo-input">
+      </form>
+   
     </div>
+   
+    </div>
+     
+    
+  </main>
+  
 
-    <form class="todo-form js-form">
-      <input autofocus type="text" aria-label="enter a new todo" placeholder="walk the dog" class="js-todo-input">
-    </form>
-</main>
+
   <!--
 
     Assignment 04 - Finishing a Todo List App
