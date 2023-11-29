@@ -69,6 +69,7 @@ h1 {
 }
 
 .app-title {
+  margin-top: 2rem;
   font-family: "ＭＳ Ｐゴシック";
   text-align: center;
   font-size: 30px;
