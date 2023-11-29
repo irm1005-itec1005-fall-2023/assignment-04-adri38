@@ -1,84 +1,70 @@
-const input = document.querySelector("#todo-input");
-//input field
+let todoitems = [];
 
-//add button listener
-document.querySelector("#submit").addEventListener('click', () => {
-    //input field vlaue
-    const inputData = input.value;
-    input.value = "";
+//create new item
+function addTodo(text) {
+    const todo = {
+        text,
+        checked: false,
+        id: Date.now(),
+    };
+    todoitems.push(todo);
+    renderTodo(todoitems);
+}
+//form
+const form = document.querySelector(".js-form");
+//submit event listner
+form.addEventListener("submit", event => {
+    event.preventDefault();
+    const input = document.querySelector(".js-todo-input");
+    //get value + remove whitespCE
+    const text = input.ariaValueMax.trim();
+    if (text !== "") {
+        addTodo(text);
+        input.value = "";
+        input.focus();
+    }
+});
 
-    //make to do item
-    const todoElement = document.createElement("div");
-    todoElement.classList.add("todo-item");
+function renderTodo(todo) {
+    //select first element
+    const list = document.querySelector(".js-todo-list");
+    //ternanry operator to check if done is checked (true) if yes assign is Checked if not assign empty string
+    const isChecked = todo.checked ? "done" : "";
+    const node= document.createElement("li");
+    //set class 
+    node.setAttribute("class", `todo-item ${isChecked}`);
+    node.setAttribute("data-key", todo.id);
+    //set contents of li
+    node.innerHTML = `
+    <input id="${todo.id}" type="checkbox"/>
+    <label for="${todo.id}" class="tick js-tick"></label>
+    <span>${todo.text}</span>
+    <button class="delete-todo js-delete-todo">
+    <svg><use href="#delete-icon"></use></svg>
+    </button>
+    `;
+   //if item is already in dom
+   if (item) {
+    list.replaceChild(node, item);
+   }
+   else {
+    list.append(node);
+   }
+}
 
-    const todoElContent = document.createElement("div");
-    todoElement.appendChild(todoElContent);
+//mark task as completed
+const list = document.querySelector(".js-todo-list");
+list.addEventListener("click", event => {
+    if (event.target.classList.contains("js-tick")) {
+        const itemKey = event.target.parentElement.dataset.key;
+        toggleDone(itemKey);
+    }
+});
 
-    const todoElInput = document.createElement("input");
-    todoElInput.classList.add("text");
-    todoElInput.type = "text";
-    todoElInput.value = inputData;
-    todoElInput.setAttribute("readonly", "readonly");
+function toggleDone(key) {
+    const index = todoitems.findIndex(item => item.id === Number(key));
+    todoitems[index].checked = !todoitems[index].checked;
+    renderTodo(todoitems[index]);
+}
 
-    todoElContent.appendChild(todoElInput);
-
-    const todoactionsel = document.createElement("div");
-    todoactionsel.classList.add("action-items");
-
-    const todoDoneEl = document.createElement("i");
-    todoDoneEl.classList.add("fa-solid");
-    todoDoneEl.classList.add("fa-check");
-
-    const todoEditEl = document.createElement("i");
-    todoEditEl.classList.add("fa-solid");
-    todoEditEl.classList.add("fa-pen-to-square");
-    todoEditEl.classList("edit");
-
-    const todoDeleteEl = document.createElement("i");
-    todoDeleteEl.classList.add("fa-solid");
-    todoDeleteEl.classList.add("fa-trash");
-
-    todoactionsel.appendChild(todoDoneEl);
-    todoactionsel.appendChild(todoEditEl);
-    todoactionsel.appendChild(todoDeleteEl);
-
-    todoElement.appendChild(todoactionsel);
-        console.log(todoElement);
-//add item to list
-    document.querySelector(".todo-lists").appendChild(todoelement);
-
-    //done function
-    todoDoneEl.addEventListener("click", () => {
-        todoElInput.classList.add("done");
-        todoelement.removeChild(todoactionsel);
-    });
-
-
-    //edit function
-    todoEditEl.addEventListener("click", () => {
-        if (todoEditEl.classList.contains("edit")) {
-            todoEditEl.classList.remove("edit");
-            todoEditEl.classList.remove("fa-pen-to-square");
-            todoEditEl.classList.add("fa-x");
-            todoEditEl.classList.add("save");
-            todoEditEl.removeAttribute("readonly");
-            todoElInput.focus();
-            }
-
-        else {
-            todoEditEl.classList.remove("save");
-            todoEditEl.classList.remove("fa-x");
-            todoEditEl.classList.add("fa-pen-to-square");
-            todoEditEl.classList.add("edit");
-            todoElInput.setAttribute("readonly", "readonly");
-        }
-    });
-
-    //delete function
-
-    todoDeleteEl.addEventListener("click", (e) => {
-        console.log(todoelement);
-        document.querySelector(".todo-lists").removeChild(todoelement);
-    });
-
-})
+  
