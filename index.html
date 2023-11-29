@@ -25,9 +25,20 @@
 </head>
 
 <body>
-  <header>
+<main>
+  <div class="container">
+    <h1class="app-title">todos</h1class></h1>
+    <ul class="todo-list js-todo-list"></ul>
+    <div class= "empty-state">
+      <svg class="checklist-icon"><use href="kn;jp"></use></svg>
+        <h2 class="emptystatetitle">add your first todo</h2>
+        <p class="emptystatedesc">What do you want to get done today?</p>
+    </div>
 
-  </header>
+    <form class="todo-form js-form">
+      <input autofocus type="text" aria-label="enter a new todo" placeholder="walk the dog" class="js-todo-input">
+    </form>
+</main>
   <!--
 
     Assignment 04 - Finishing a Todo List App
@@ -43,28 +54,7 @@
 
   -->
 
-  <main>
-    <div id="app">
-      <div class="main-container">
-        <div class = "ta-container">
-          <div class ="heading">
-            <h1>To Do App</h1>
-            <div class="ta-wrapper">
-              <div class="input-wrapper">
-                <input type="text" id="todo-input">
-                <button id="submit">Add</button>
-              </div>
-              <div class="todo-lists">
-                <!--to do items go here-->
-              </div>
-            </div>
-        
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
+ 
 
   <!-- Add JavaScript File -->
   <script src="./script.js"></script>

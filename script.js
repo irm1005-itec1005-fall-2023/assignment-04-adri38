@@ -26,8 +26,18 @@ form.addEventListener("submit", event => {
 });
 
 function renderTodo(todo) {
+    localStorage.setItem("todoItemsRef", JSON.stringify(todoitems));
+
     //select first element
     const list = document.querySelector(".js-todo-list");
+    const item = document.querySelector(`[data-key="${todo.id}"]`)
+
+    if (todo.deleted) {
+        item.remove();
+        if (todoitems.length === 0) list.innerHTML = "";
+        return
+    }
+
     //ternanry operator to check if done is checked (true) if yes assign is Checked if not assign empty string
     const isChecked = todo.checked ? "done" : "";
     const node= document.createElement("li");
@@ -52,12 +62,26 @@ function renderTodo(todo) {
    }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const ref = localStorage.getItem("todoItemsRef");
+    if (ref) {
+        todoitems = JSON.parse(ref);
+        todoitems.forEach(t => {
+            renderTodo(t);
+        });
+    }
+});
+
 //mark task as completed
 const list = document.querySelector(".js-todo-list");
 list.addEventListener("click", event => {
     if (event.target.classList.contains("js-tick")) {
         const itemKey = event.target.parentElement.dataset.key;
         toggleDone(itemKey);
+    }
+    if (event.target.classlist.contains("js-delete-todo")) {
+        const itemKey = event.target.parentElement.dataset.key;
+        deleteTodo(itemKey);
     }
 });
 
@@ -67,4 +91,16 @@ function toggleDone(key) {
     renderTodo(todoitems[index]);
 }
 
+function deleteTodo(key) {
+    //find the right todo item
+    const index = todoitems.findIndex(item => item.id === Number(key));
+    //create new object with th esame properties and true deleted property
+    const todo = {
+        deleted: true,
+        ...todoitems[index]
+    };
+    //filter out the item from the array
+    todoitems = todoitems.filter(item => item.id !==Number(key));
+    renderTodo(todo);
+}
   
