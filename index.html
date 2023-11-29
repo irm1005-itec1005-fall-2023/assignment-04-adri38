@@ -21,9 +21,32 @@
   <link rel="stylesheet" href="./style.css" />
 
   <!-- Set the Favicon  -->
-  <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
+  <link rel="icon" type="image/png" href="images/cinnamon-roll.png"/>
 </head>
+
 <body>
+  <main>
+    <div class="container">
+      <h1 class="app-title"> ❄To Do List❄</h1>
+      <ul class="todo-list js-todo-list"></ul>
+      <!-- add the empty state here -->
+      <div class="empty-state">
+        <img src="images/cinnamoroll-sanrio.gif" alt="gif of the sanrio character 'Cinnamaroll' flapping his ears and making a snowball" id="Cinnamaroll">
+        <h2 class="empty-state__title">Add to your list by hitting the enter key!</h2>
+        <p class="empty-state__description">What are we doing today?</p>
+      </div>
+      <!-- end -->
+      <form class="js-form">
+        <input autofocus type="text" aria-label="Enter a new todo item" placeholder="E.g. Walk the dog" class="js-todo-input">
+      </form>
+   
+    </div>
+   
+     
+    
+  </main>
+  
+
 
   <!--
 
@@ -40,9 +63,7 @@
 
   -->
 
-  <main>
-    <div id="app"></div>
-  </main>
+ 
 
   <!-- Add JavaScript File -->
   <script src="./script.js"></script>
